@@ -39,6 +39,14 @@ public class Material {
         this.name = name;
     }
 
+    public int getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
+    }
+
     public static ArrayList<Material> getMaterials() {
         final ArrayList<Material> array = new ArrayList<>();
         try {

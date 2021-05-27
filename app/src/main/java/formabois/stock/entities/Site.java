@@ -39,6 +39,7 @@ public class Site {
 
     /**
      * Obtient tous les sites de la base de données
+     *
      * @return un tableau avec tous les sites
      */
     public static ArrayList<Site> getSites() {

@@ -14,14 +14,18 @@ import java.sql.SQLException;
  * Contrôleur de la page de connexion
  */
 public class LoginController {
-    @FXML TextField username;
-    @FXML PasswordField password;
+    @FXML
+    TextField username;
+    @FXML
+    PasswordField password;
 
     /**
      * Gère le bouton de connexion
+     *
      * @param e évènement du clic
      */
-    @FXML public void handleLogin(Event e) {
+    @FXML
+    public void handleLogin(Event e) {
         try {
             DatabaseSession.connect(username.getText(), password.getText());
             Application.loadPage("arrivals_materials.fxml");

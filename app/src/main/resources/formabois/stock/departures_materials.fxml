@@ -55,8 +55,8 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button defaultButton="true" layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Entrées de stock de matériaux" />
-            <Button mnemonicParsing="false" text="Sorties de stock de matériaux" />
+            <Button onAction="#gotoMaterialArrivals" layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Entrées de stock de matériaux" />
+            <Button defaultButton="true" mnemonicParsing="false" text="Sorties de stock de matériaux" />
             <Button layoutX="71.0" layoutY="37.0" mnemonicParsing="false" text="Liste des stocks de matériaux" />
             <Button layoutX="28.0" layoutY="117.0" mnemonicParsing="false" text="Gestion des matériaux" />
             <Line endX="100.0" startX="-100.0" />
@@ -91,9 +91,9 @@
                      <PropertyValueFactory property="site" />
                   </cellValueFactory>
                </TableColumn>
-               <TableColumn prefWidth="110.0" text="Fournisseur">
+               <TableColumn prefWidth="110.0" text="Destination">
                   <cellValueFactory>
-                     <PropertyValueFactory property="supplier" />
+                     <PropertyValueFactory property="destination" />
                   </cellValueFactory>
                </TableColumn>
             </columns>
@@ -136,17 +136,17 @@
                         <ChoiceBox fx:id="siteDetail" disable="true" prefWidth="150.0" />
                      </HBox>
                      <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Fournisseur">
+                        <Label prefHeight="27.0" prefWidth="78.0" text="Destination">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="supplierDetail" disable="true" />
+                        <TextField fx:id="destinationDetail" disable="true" />
                      </HBox>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="34.0" prefWidth="219.0" spacing="5.0">
                      <Button fx:id="addModeButton" managed="false" onAction="#createMode" text="Ajouter nouveau" />
-                     <Button fx:id="editButton" onAction="#updateEntity" disable="true" managed="false" text="Modifier" />
+                     <Button fx:id="editButton" disable="true" managed="false" onAction="#updateEntity" text="Modifier" />
                      <Button fx:id="createButton" managed="false" onAction="#createEntity" text="Créer" />
                      <Button fx:id="cancelCreateButton" cancelButton="true" layoutX="144.0" layoutY="15.0" managed="false" onAction="#cancelCreate" text="Annuler" />
                   </HBox>
@@ -179,12 +179,12 @@
                         <ChoiceBox fx:id="siteFilter" prefWidth="150.0" />
                      </HBox>
                      <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Fournisseur">
+                        <Label prefHeight="27.0" prefWidth="78.0" text="Destination">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="supplierFilter" promptText="Rechercher ici..." />
+                        <TextField fx:id="destinationFilter" promptText="Rechercher ici..." />
                      </HBox>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="47.0" prefWidth="219.0">

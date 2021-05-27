@@ -12,6 +12,7 @@ import java.util.Properties;
 
 /**
  * Cette classe permet de faciliter la connexion à la base de données. Les entités s'en servent directement.
+ *
  * @since 1.0
  */
 public class DatabaseSession {
@@ -25,6 +26,7 @@ public class DatabaseSession {
      * Lance la connexion à la base de données. L'instance de la connexion sera stockée statiquement dans la classe.
      * Cette méthode va également stocker de manière statique le nom de l'utilisateur et son niveau de privilèges.
      * L'addresse et le nom de la base de données sont retrouvés depuis un fichier de configuration.
+     *
      * @param username Nom d'utilisateur de la base de données
      * @param password Mot de passe de l'utilisateur de la base de données
      * @throws SQLException Levé lors d'une erreur de connexion.
@@ -74,7 +76,8 @@ public class DatabaseSession {
     /**
      * Fonction helper qui ajoute une condition à une requête SQL.
      * Gère automatiquement l'ajout des WHERE et AND.
-     * @param query la requête à laquelle on veut ajouter la condition
+     *
+     * @param query     la requête à laquelle on veut ajouter la condition
      * @param condition la condition qu'on l'on veut ajouter à la requête
      * @return la requête SQL avec la condition ajoutée
      */

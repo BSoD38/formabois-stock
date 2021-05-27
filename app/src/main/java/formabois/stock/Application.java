@@ -19,6 +19,7 @@ public class Application extends javafx.application.Application {
 
     /**
      * Point d'entrée de l'application JavaFX.
+     *
      * @param primaryStage le stage de l'application, fourni nativement par JavaFX
      */
     @Override
@@ -45,6 +46,7 @@ public class Application extends javafx.application.Application {
 
     /**
      * Permet de charger une nouvelle page dans la scène de l'application.
+     *
      * @param resourceName Le chemin de la ressource FXML.
      */
     public static void loadPage(String resourceName) {

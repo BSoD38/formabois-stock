@@ -92,9 +92,10 @@ public class MaterialDeparture {
 
     /**
      * Fait une requête de sorties de matériaux bruts à la base de données. Peut filtrer avec les arguments.
+     *
      * @param destinationFilter filtre sur la destination, si vide, aucun filtre.
-     * @param material filtre sur le matériau, si ID=0, aucun filtre.
-     * @param site filtre sur le site, si ID=0, aucun filtre.
+     * @param material          filtre sur le matériau, si ID=0, aucun filtre.
+     * @param site              filtre sur le site, si ID=0, aucun filtre.
      * @return La liste de matériaux bruts.
      */
     public static ArrayList<MaterialDeparture> getMaterialDepartures(String destinationFilter, Material material, Site site) {
@@ -134,9 +135,10 @@ public class MaterialDeparture {
     /**
      * Ajoute un départ de matériaux bruts à la base de données.
      * Va également mettre à jour le stock.
-     * @param materialId ID du matériau
-     * @param siteId ID du site
-     * @param count nombre d'éléments dans le départ
+     *
+     * @param materialId  ID du matériau
+     * @param siteId      ID du site
+     * @param count       nombre d'éléments dans le départ
      * @param destination nom de la destination
      */
     public static void insertMaterialDeparture(String materialId, String siteId, String count, String destination) {
@@ -153,9 +155,10 @@ public class MaterialDeparture {
 
     /**
      * Met à jour le stock de matériaux bruts.
+     *
      * @param materialId l'id du matériau
-     * @param siteId l'id du site
-     * @param count le nombre à mettre à jour
+     * @param siteId     l'id du site
+     * @param count      le nombre à mettre à jour
      */
     private static void updateStock(String materialId, String siteId, String count) {
         try {
@@ -185,10 +188,11 @@ public class MaterialDeparture {
     /**
      * Permet de mettre à jour un départ de matériau brut.
      * Met automatiquement le stock à jour.
-     * @param currentValue le départ de matériau de départ
-     * @param newMaterialId le nouveau matériau de départ
-     * @param newSiteId le nouveau site de destination
-     * @param newCount le nouveau nombre de départs
+     *
+     * @param currentValue   le départ de matériau de départ
+     * @param newMaterialId  le nouveau matériau de départ
+     * @param newSiteId      le nouveau site de destination
+     * @param newCount       le nouveau nombre de départs
      * @param newDestination la nouvelle destination
      */
     public static void updateMaterialDeparture(MaterialDeparture currentValue, String newMaterialId, String newSiteId, String newCount, String newDestination) {

@@ -1,5 +1,6 @@
 package formabois.stock.controllers;
 
+import formabois.stock.Application;
 import formabois.stock.DatabaseSession;
 import formabois.stock.entities.Material;
 import formabois.stock.entities.MaterialArrival;
@@ -103,6 +104,7 @@ public class MaterialArrivalsController {
     @FXML
     void createEntity() {
         MaterialArrival.insertMaterialArrival(Integer.toString(materialDetail.getValue().getId()), Integer.toString(siteDetail.getValue().getId()), countDetail.getText(), supplierDetail.getText());
+        cancelCreate();
         updateTable();
     }
 
@@ -112,6 +114,7 @@ public class MaterialArrivalsController {
     @FXML
     void updateEntity() {
         MaterialArrival.updateMaterialArrival(selectedRow, Integer.toString(materialDetail.getValue().getId()), Integer.toString(siteDetail.getValue().getId()), countDetail.getText(), supplierDetail.getText());
+        cancelCreate();
         updateTable();
     }
 
@@ -125,6 +128,11 @@ public class MaterialArrivalsController {
         siteDetail.setDisable(true);
         supplierDetail.setDisable(true);
         countDetail.setDisable(true);
+        materialDetail.setValue(null);
+        siteDetail.setValue(null);
+        supplierDetail.setText("");
+        countDetail.setText("");
+        selectedRow = null;
     }
 
     /**
@@ -142,5 +150,13 @@ public class MaterialArrivalsController {
         countDetail.setDisable(false);
         countDetail.setText("");
         selectedRow = null;
+    }
+
+    /**
+     * Permet de se rendre à la page des départs de matériaux
+     */
+    @FXML
+    void gotoMaterialDepartures() {
+        Application.loadPage("departures_materials.fxml");
     }
 }

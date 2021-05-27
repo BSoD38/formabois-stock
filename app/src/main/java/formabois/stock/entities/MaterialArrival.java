@@ -92,9 +92,10 @@ public class MaterialArrival {
 
     /**
      * Fait une requête de matériaux bruts à la base de données. Peut filtrer avec les arguments.
+     *
      * @param supplierFilter filtre sur le fournisseur, si vide, aucun filtre.
-     * @param material filtre sur le matériau, si ID=0, aucun filtre.
-     * @param site filtre sur le site, si ID=0, aucun filtre.
+     * @param material       filtre sur le matériau, si ID=0, aucun filtre.
+     * @param site           filtre sur le site, si ID=0, aucun filtre.
      * @return La liste de matériaux bruts.
      */
     public static ArrayList<MaterialArrival> getMaterialArrivals(String supplierFilter, Material material, Site site) {
@@ -134,10 +135,11 @@ public class MaterialArrival {
     /**
      * Ajoute un arrivage de matériaux bruts à la base de données.
      * Va également mettre à jour le stock.
+     *
      * @param materialId ID du matériau
-     * @param siteId ID du site
-     * @param count nombre d'éléments dans l'arrivage
-     * @param supplier nom du fournisseur
+     * @param siteId     ID du site
+     * @param count      nombre d'éléments dans l'arrivage
+     * @param supplier   nom du fournisseur
      */
     public static void insertMaterialArrival(String materialId, String siteId, String count, String supplier) {
         try {
@@ -153,9 +155,10 @@ public class MaterialArrival {
 
     /**
      * Met à jour le stock de matériaux bruts.
+     *
      * @param materialId l'id du matériau
-     * @param siteId l'id du site
-     * @param count le nombre à mettre à jour
+     * @param siteId     l'id du site
+     * @param count      le nombre à mettre à jour
      */
     private static void updateStock(String materialId, String siteId, String count) {
         try {
@@ -185,11 +188,12 @@ public class MaterialArrival {
     /**
      * Permet de mettre à jour un arrivage de matériau brut.
      * Met automatiquement le stock à jour.
-     * @param currentValue l'arrivage de matériau de départ
+     *
+     * @param currentValue  l'arrivage de matériau de départ
      * @param newMaterialId le nouveau matériau d'arrivage
-     * @param newSiteId le nouveau site de destination
-     * @param newCount le nouveau nombre d'arrivage
-     * @param newSupplier le nouveau fournisseur
+     * @param newSiteId     le nouveau site de destination
+     * @param newCount      le nouveau nombre d'arrivage
+     * @param newSupplier   le nouveau fournisseur
      */
     public static void updateMaterialArrival(MaterialArrival currentValue, String newMaterialId, String newSiteId, String newCount, String newSupplier) {
         newMaterialId = newMaterialId.equals("0") ? currentValue.getMaterialId() : newMaterialId;
