@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" styleClass="centered" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formabois.stock.controllers.LoginController">
+    <Label styleClass="big-text, bold" text="Bienvenue !" />
+    <Label styleClass="big-text" text="Écran de connexion" />
+    <TextField fx:id="username" promptText="Identifiant" styleClass="login-field" />
+   <PasswordField fx:id="password" promptText="Mot de passe" styleClass="login-field" />
+    <Button onAction="#handleLogin" text="Connexion" />
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+</VBox>
