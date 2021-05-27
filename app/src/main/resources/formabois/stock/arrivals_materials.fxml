@@ -57,7 +57,7 @@
             </Label>
             <Button defaultButton="true" layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Entrées de stock de matériaux" />
             <Button onAction="#gotoMaterialDepartures" mnemonicParsing="false" text="Sorties de stock de matériaux" />
-            <Button layoutX="71.0" layoutY="37.0" mnemonicParsing="false" text="Liste des stocks de matériaux" />
+            <Button layoutX="71.0" layoutY="37.0" onAction="#gotoMaterialStocks" mnemonicParsing="false" text="Liste des stocks de matériaux" />
             <Button layoutX="28.0" layoutY="117.0" mnemonicParsing="false" text="Gestion des matériaux" />
             <Line endX="100.0" startX="-100.0" />
             <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Sorties de stock de produits finis" />
