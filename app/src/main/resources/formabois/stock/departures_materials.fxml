@@ -39,9 +39,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formabois.stock.controllers.MaterialDeparturesController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formabois.stock.controllers.MaterialDeparturesController">
    <HBox alignment="TOP_CENTER" prefWidth="200.0">
-      <Label text="Entrées de stock - Matériaux bruts" textAlignment="CENTER">
+      <Label text="Sorties de stock - Matériaux bruts" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -55,10 +55,10 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button onAction="#gotoMaterialArrivals" layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Entrées de stock de matériaux" />
+            <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" onAction="#gotoMaterialArrivals" text="Entrées de stock de matériaux" />
             <Button defaultButton="true" mnemonicParsing="false" text="Sorties de stock de matériaux" />
-            <Button layoutX="71.0" layoutY="37.0" onAction="#gotoMaterialStocks" mnemonicParsing="false" text="Liste des stocks de matériaux" />
-            <Button layoutX="28.0" layoutY="117.0" mnemonicParsing="false" text="Gestion des matériaux" />
+            <Button layoutX="71.0" layoutY="37.0" mnemonicParsing="false" onAction="#gotoMaterialStocks" text="Liste des stocks de matériaux" />
+            <Button layoutX="28.0" layoutY="117.0" mnemonicParsing="false" onAction="#gotoMaterials" text="Gestion des matériaux" />
             <Line endX="100.0" startX="-100.0" />
             <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Sorties de stock de produits finis" />
             <Button layoutX="27.0" layoutY="117.0" mnemonicParsing="false" text="Entrées de stock de produits finis" />

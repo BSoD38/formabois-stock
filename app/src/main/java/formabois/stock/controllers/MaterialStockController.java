@@ -55,4 +55,10 @@ public class MaterialStockController {
     void gotoMaterialDepartures() {
         Application.loadPage("departures_materials.fxml");
     }
+
+    /**
+     * Permet de se rendre à la page de gestion des matériaux
+     */
+    @FXML
+    void gotoMaterials() { Application.loadPage("materials.fxml"); }
 }

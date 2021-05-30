@@ -39,9 +39,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formabois.stock.controllers.MaterialArrivalsController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formabois.stock.controllers.MaterialController">
    <HBox alignment="TOP_CENTER" prefWidth="200.0">
-      <Label text="Entrées de stock - Matériaux bruts" textAlignment="CENTER">
+      <Label text="Gestion des matériaux bruts" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -55,10 +55,10 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button defaultButton="true" layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Entrées de stock de matériaux" />
-            <Button onAction="#gotoMaterialDepartures" mnemonicParsing="false" text="Sorties de stock de matériaux" />
-            <Button layoutX="71.0" layoutY="37.0" onAction="#gotoMaterialStocks" mnemonicParsing="false" text="Liste des stocks de matériaux" />
-            <Button layoutX="28.0" layoutY="117.0" onAction="#gotoMaterials" mnemonicParsing="false" text="Gestion des matériaux" />
+            <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" onAction="#gotoMaterialArrivals" text="Entrées de stock de matériaux" />
+            <Button mnemonicParsing="false" onAction="#gotoMaterialDepartures" text="Sorties de stock de matériaux" />
+            <Button layoutX="71.0" layoutY="37.0" mnemonicParsing="false" onAction="#gotoMaterialStocks" text="Liste des stocks de matériaux" />
+            <Button defaultButton="true" layoutX="28.0" layoutY="117.0" mnemonicParsing="false" text="Gestion des matériaux" />
             <Line endX="100.0" startX="-100.0" />
             <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Sorties de stock de produits finis" />
             <Button layoutX="27.0" layoutY="117.0" mnemonicParsing="false" text="Entrées de stock de produits finis" />
@@ -69,31 +69,21 @@
          </VBox>
       </AnchorPane>
       <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="570.0" prefWidth="443.0">
-         <TableView fx:id="materialArrivalsTable" prefHeight="569.0" prefWidth="501.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <TableView fx:id="materialTable" prefHeight="569.0" prefWidth="501.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columns>
-               <TableColumn prefWidth="57.0" sortType="DESCENDING" text="ID">
+               <TableColumn prefWidth="78.0" sortType="DESCENDING" text="ID">
                   <cellValueFactory>
-                     <PropertyValueFactory property="dbId" />
+                     <PropertyValueFactory property="id" />
                   </cellValueFactory>
                </TableColumn>
-               <TableColumn prefWidth="133.0" text="Matériau">
+               <TableColumn prefWidth="200.0" text="Matériau">
                   <cellValueFactory>
-                     <PropertyValueFactory property="material" />
+                     <PropertyValueFactory property="name" />
                   </cellValueFactory>
                </TableColumn>
-               <TableColumn text="Nombre">
+               <TableColumn minWidth="5.0" prefWidth="81.0" text="Seuil d'alerte">
                   <cellValueFactory>
-                     <PropertyValueFactory property="count" />
-                  </cellValueFactory>
-               </TableColumn>
-               <TableColumn prefWidth="120.0" text="Site">
-                  <cellValueFactory>
-                     <PropertyValueFactory property="site" />
-                  </cellValueFactory>
-               </TableColumn>
-               <TableColumn prefWidth="110.0" text="Fournisseur">
-                  <cellValueFactory>
-                     <PropertyValueFactory property="supplier" />
+                     <PropertyValueFactory property="threshold" />
                   </cellValueFactory>
                </TableColumn>
             </columns>
@@ -111,42 +101,26 @@
             <ScrollPane prefHeight="600.0" prefWidth="211.0">
                <VBox alignment="TOP_CENTER" prefHeight="256.0" prefWidth="219.0">
                   <VBox prefHeight="221.0" prefWidth="219.0">
-                     <HBox>
+                     <HBox layoutX="10.0" layoutY="89.0">
                         <Label prefHeight="27.0" prefWidth="78.0" text="Matériau">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ChoiceBox fx:id="materialDetail" disable="true" prefWidth="150.0" />
-                     </HBox>
-                     <HBox layoutX="10.0" layoutY="89.0">
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Nombre">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="countDetail" disable="true" />
+                        <TextField fx:id="nameDetail" disable="true" />
                      </HBox>
                      <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Site">
+                        <Label prefHeight="27.0" prefWidth="78.0" text="Seuil d'alerte">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ChoiceBox fx:id="siteDetail" disable="true" prefWidth="150.0" />
-                     </HBox>
-                     <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Fournisseur">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="supplierDetail" disable="true" />
+                        <TextField fx:id="thresholdDetail" disable="true" />
                      </HBox>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="34.0" prefWidth="219.0" spacing="5.0">
                      <Button fx:id="addModeButton" managed="false" onAction="#createMode" text="Ajouter nouveau" />
-                     <Button fx:id="editButton" onAction="#updateEntity" disable="true" managed="false" text="Modifier" />
+                     <Button fx:id="editButton" disable="true" managed="false" onAction="#updateEntity" text="Modifier" />
                      <Button fx:id="createButton" managed="false" onAction="#createEntity" text="Créer" />
                      <Button fx:id="cancelCreateButton" cancelButton="true" layoutX="144.0" layoutY="15.0" managed="false" onAction="#cancelCreate" text="Annuler" />
                   </HBox>
@@ -168,23 +142,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ChoiceBox fx:id="materialFilter" prefWidth="150.0" />
-                     </HBox>
-                     <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Site">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <ChoiceBox fx:id="siteFilter" prefWidth="150.0" />
-                     </HBox>
-                     <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Fournisseur">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="supplierFilter" promptText="Rechercher ici..." />
+                        <TextField fx:id="nameFilter" promptText="Rechercher ici..." />
                      </HBox>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="47.0" prefWidth="219.0">
