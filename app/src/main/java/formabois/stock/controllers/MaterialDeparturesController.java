@@ -2,6 +2,7 @@ package formabois.stock.controllers;
 
 import formabois.stock.Application;
 import formabois.stock.DatabaseSession;
+import formabois.stock.Popup;
 import formabois.stock.entities.Material;
 import formabois.stock.entities.MaterialArrival;
 import formabois.stock.entities.MaterialDeparture;
@@ -206,5 +207,13 @@ public class MaterialDeparturesController {
     @FXML
     void gotoProducts() {
         Application.loadPage("products.fxml");
+    }
+
+    /**
+     * Permet d'ouvrir la page de statistiques
+     */
+    @FXML
+    void gotoStats() {
+        Popup.popupFXML("stats.fxml", "Statistiques");
     }
 }

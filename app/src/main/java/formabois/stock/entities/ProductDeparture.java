@@ -154,7 +154,6 @@ public class ProductDeparture {
      * @param price       prix de vente
      */
     public static void insertProductDeparture(String productId, String siteId, String count, String destination, String price) {
-        System.out.println(price);
         try {
             final PreparedStatement ps = DatabaseSession.connection.prepareStatement(
                     String.format("INSERT INTO product_departures (product_id, site_id, count, destination, price) VALUES (%s, %s, %s, '%s', %s)", productId, siteId, count, destination, price)

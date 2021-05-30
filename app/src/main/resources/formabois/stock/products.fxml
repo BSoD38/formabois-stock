@@ -65,7 +65,7 @@
             <Button layoutX="28.0" layoutY="82.0" mnemonicParsing="false" onAction="#gotoProductStocks" text="Liste des stocks de produits finis" />
             <Button defaultButton="true" layoutX="19.0" layoutY="268.0" mnemonicParsing="false" onAction="#gotoProducts" text="Gestions des produits finis" />
             <Line endX="100.0" startX="-100.0" />
-            <Button layoutX="64.0" layoutY="82.0" mnemonicParsing="false" text="Statistiques" />
+            <Button layoutX="64.0" layoutY="82.0" mnemonicParsing="false" onAction="#gotoStats" text="Statistiques" />
          </VBox>
       </AnchorPane>
       <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="570.0" prefWidth="443.0">

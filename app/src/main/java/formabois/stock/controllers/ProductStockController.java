@@ -2,6 +2,7 @@ package formabois.stock.controllers;
 
 import formabois.stock.Application;
 import formabois.stock.DatabaseSession;
+import formabois.stock.Popup;
 import formabois.stock.entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,5 +84,13 @@ public class ProductStockController {
     @FXML
     void gotoProducts() {
         Application.loadPage("products.fxml");
+    }
+
+    /**
+     * Permet d'ouvrir la page de statistiques
+     */
+    @FXML
+    void gotoStats() {
+        Popup.popupFXML("stats.fxml", "Statistiques");
     }
 }
