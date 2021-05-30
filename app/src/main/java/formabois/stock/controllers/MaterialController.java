@@ -74,6 +74,7 @@ public class MaterialController {
      */
     @FXML
     void updateTable() {
+        DatabaseSession.refreshMaterials();
         final ObservableList<Material> list = FXCollections.observableArrayList(DatabaseSession.materials.subList(1, DatabaseSession.materials.size()));
         materialTable.setItems(list);
     }
@@ -133,7 +134,7 @@ public class MaterialController {
     }
 
     /**
-     * Permet de se rendre à la page des arrivages de matériaux
+     * Permet de se rendre à la page des stocks de matériaux
      */
     @FXML
     void gotoMaterialStocks() {
@@ -146,5 +147,38 @@ public class MaterialController {
     @FXML
     void gotoMaterialArrivals() {
         Application.loadPage("arrivals_materials.fxml");
+    }
+
+    /**
+     * Permet de se rendre à la page des arrivages de produits
+     */
+    @FXML
+    void gotoProductArrivals() {
+        Application.loadPage("arrivals_products.fxml");
+    }
+
+
+    /**
+     * Permet de se rendre à la page des départs de produits
+     */
+    @FXML
+    void gotoProductDepartures() {
+        Application.loadPage("departures_products.fxml");
+    }
+
+    /**
+     * Permet de se rendre à la page des stocks de produits
+     */
+    @FXML
+    void gotoProductStocks() {
+        Application.loadPage("stock_products.fxml");
+    }
+
+    /**
+     * Permet de se rendre à la page de gestion de produits
+     */
+    @FXML
+    void gotoProducts() {
+        Application.loadPage("products.fxml");
     }
 }

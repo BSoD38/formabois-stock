@@ -1,6 +1,7 @@
 package formabois.stock;
 
 import formabois.stock.entities.Material;
+import formabois.stock.entities.Product;
 import formabois.stock.entities.Site;
 
 import java.io.FileInputStream;
@@ -20,6 +21,7 @@ public class DatabaseSession {
     public static boolean isAdmin = false;
     public static String currentUser = null;
     public static ArrayList<Material> materials;
+    public static ArrayList<Product> products;
     public static ArrayList<Site> sites;
 
     /**
@@ -58,6 +60,7 @@ public class DatabaseSession {
             }
             refreshMaterials();
             refreshSites();
+            refreshProducts();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,6 +74,11 @@ public class DatabaseSession {
     static public void refreshSites() {
         sites = Site.getSites();
         sites.add(0, new Site(0, ""));
+    }
+
+    static public void refreshProducts() {
+        products = Product.getProducts();
+        products.add(0, new Product(0, "", 0));
     }
 
     /**

@@ -2,9 +2,7 @@ package formabois.stock.controllers;
 
 import formabois.stock.Application;
 import formabois.stock.DatabaseSession;
-import formabois.stock.entities.Material;
-import formabois.stock.entities.MaterialArrival;
-import formabois.stock.entities.Site;
+import formabois.stock.entities.*;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,23 +10,25 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.converter.NumberStringConverter;
 
-public class MaterialArrivalsController {
+public class ProductDeparturesController {
     @FXML
-    TableView<MaterialArrival> materialArrivalsTable;
+    TableView<ProductDeparture> materialArrivalsTable;
     @FXML
-    ChoiceBox<Material> materialFilter;
+    ChoiceBox<Product> productFilter;
     @FXML
     ChoiceBox<Site> siteFilter;
     @FXML
-    TextField supplierFilter;
+    TextField destinationFilter;
     @FXML
-    ChoiceBox<Material> materialDetail;
+    ChoiceBox<Product> productDetail;
     @FXML
     ChoiceBox<Site> siteDetail;
     @FXML
-    TextField supplierDetail;
+    TextField destinationDetail;
     @FXML
     TextField countDetail;
+    @FXML
+    TextField priceDetail;
     @FXML
     Button editButton;
     @FXML
@@ -41,7 +41,7 @@ public class MaterialArrivalsController {
      * Si un administrateur passe en mode création d'entité, cette variable sera vraie.
      */
     final SimpleBooleanProperty isInCreateMode = new SimpleBooleanProperty(false);
-    MaterialArrival selectedRow;
+    ProductDeparture selectedRow;
 
     /**
      * Initialise la page.
@@ -49,25 +49,26 @@ public class MaterialArrivalsController {
      */
     @FXML
     protected void initialize() {
-        materialFilter.setItems(FXCollections.observableArrayList(DatabaseSession.materials));
+        productFilter.setItems(FXCollections.observableArrayList(DatabaseSession.products));
         siteFilter.setItems(FXCollections.observableArrayList(DatabaseSession.sites));
-        materialDetail.setItems(FXCollections.observableArrayList(DatabaseSession.materials));
+        productDetail.setItems(FXCollections.observableArrayList(DatabaseSession.products));
         siteDetail.setItems(FXCollections.observableArrayList(DatabaseSession.sites));
-        countDetail.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
         materialArrivalsTable.setRowFactory(tv -> {
-            TableRow<MaterialArrival> row = new TableRow<>();
+            TableRow<ProductDeparture> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && !isInCreateMode.get()) {
                     selectedRow = row.getItem();
-                    materialDetail.setValue(new Material(Integer.parseInt(selectedRow.getMaterialId()), selectedRow.getMaterial(), 0));
+                    productDetail.setValue(new Product(Integer.parseInt(selectedRow.getProductId()), selectedRow.getProduct(), 0));
                     siteDetail.setValue(new Site(Integer.parseInt(selectedRow.getSiteId()), selectedRow.getSite()));
-                    supplierDetail.setText(selectedRow.getSupplier());
+                    destinationDetail.setText(selectedRow.getDestination());
                     countDetail.setText(selectedRow.getCount());
+                    priceDetail.setText(Float.toString(selectedRow.getPrice()));
                     if (DatabaseSession.isAdmin) {
-                        materialDetail.setDisable(false);
+                        productDetail.setDisable(false);
                         siteDetail.setDisable(false);
-                        supplierDetail.setDisable(false);
+                        destinationDetail.setDisable(false);
                         countDetail.setDisable(false);
+                        priceDetail.setDisable(false);
                         editButton.setDisable(false);
                     }
                 }
@@ -92,8 +93,8 @@ public class MaterialArrivalsController {
      */
     @FXML
     void updateTable() {
-        final ObservableList<MaterialArrival> list = FXCollections.observableArrayList(
-                MaterialArrival.getMaterialArrivals(supplierFilter != null ? supplierFilter.getText() : "", materialFilter.getValue(), siteFilter.getValue())
+        final ObservableList<ProductDeparture> list = FXCollections.observableArrayList(
+                ProductDeparture.getProductDepartures(destinationFilter != null ? destinationFilter.getText() : "", productFilter.getValue(), siteFilter.getValue())
         );
         materialArrivalsTable.setItems(list);
     }
@@ -103,7 +104,7 @@ public class MaterialArrivalsController {
      */
     @FXML
     void createEntity() {
-        MaterialArrival.insertMaterialArrival(Integer.toString(materialDetail.getValue().getId()), Integer.toString(siteDetail.getValue().getId()), countDetail.getText(), supplierDetail.getText());
+        ProductDeparture.insertProductDeparture(Integer.toString(productDetail.getValue().getId()), Integer.toString(siteDetail.getValue().getId()), countDetail.getText(), destinationDetail.getText(), priceDetail.getText());
         cancelCreate();
         updateTable();
     }
@@ -113,7 +114,7 @@ public class MaterialArrivalsController {
      */
     @FXML
     void updateEntity() {
-        MaterialArrival.updateMaterialArrival(selectedRow, Integer.toString(materialDetail.getValue().getId()), Integer.toString(siteDetail.getValue().getId()), countDetail.getText(), supplierDetail.getText());
+        ProductDeparture.updateProductDeparture(selectedRow, Integer.toString(productDetail.getValue().getId()), Integer.toString(siteDetail.getValue().getId()), countDetail.getText(), destinationDetail.getText(), priceDetail.getText());
         cancelCreate();
         updateTable();
     }
@@ -124,14 +125,16 @@ public class MaterialArrivalsController {
     @FXML
     void cancelCreate() {
         isInCreateMode.set(false);
-        materialDetail.setDisable(true);
+        productDetail.setDisable(true);
         siteDetail.setDisable(true);
-        supplierDetail.setDisable(true);
+        destinationDetail.setDisable(true);
         countDetail.setDisable(true);
-        materialDetail.setValue(null);
+        productDetail.setValue(null);
         siteDetail.setValue(null);
-        supplierDetail.setText("");
+        destinationDetail.setText("");
         countDetail.setText("");
+        priceDetail.setDisable(true);
+        priceDetail.setText("");
         selectedRow = null;
     }
 
@@ -141,23 +144,25 @@ public class MaterialArrivalsController {
     @FXML
     void createMode() {
         isInCreateMode.set(true);
-        materialDetail.setDisable(false);
-        materialDetail.setValue(null);
+        productDetail.setDisable(false);
+        productDetail.setValue(null);
         siteDetail.setDisable(false);
         siteDetail.setValue(null);
-        supplierDetail.setDisable(false);
-        supplierDetail.setText("");
+        destinationDetail.setDisable(false);
+        destinationDetail.setText("");
         countDetail.setDisable(false);
         countDetail.setText("");
+        priceDetail.setDisable(false);
+        priceDetail.setText("");
         selectedRow = null;
     }
 
     /**
-     * Permet de se rendre à la page des départs de matériaux
+     * Permet de se rendre à la page des arrivages de matériaux
      */
     @FXML
-    void gotoMaterialDepartures() {
-        Application.loadPage("departures_materials.fxml");
+    void gotoMaterialArrivals() {
+        Application.loadPage("arrivals_materials.fxml");
     }
 
     /**
@@ -180,14 +185,6 @@ public class MaterialArrivalsController {
     @FXML
     void gotoProductArrivals() {
         Application.loadPage("arrivals_products.fxml");
-    }
-
-    /**
-     * Permet de se rendre à la page des départs de produits
-     */
-    @FXML
-    void gotoProductDepartures() {
-        Application.loadPage("departures_products.fxml");
     }
 
     /**

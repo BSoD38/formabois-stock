@@ -39,9 +39,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formabois.stock.controllers.MaterialDeparturesController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formabois.stock.controllers.ProductArrivalsController">
    <HBox alignment="TOP_CENTER" prefWidth="200.0">
-      <Label text="Sorties de stock - Matériaux bruts" textAlignment="CENTER">
+      <Label text="Entrées de stock - Produits finis" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -55,13 +55,13 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" onAction="#gotoMaterialArrivals" text="Entrées de stock de matériaux" />
-            <Button defaultButton="true" mnemonicParsing="false" text="Sorties de stock de matériaux" />
+            <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Entrées de stock de matériaux" />
+            <Button mnemonicParsing="false" onAction="#gotoMaterialDepartures" text="Sorties de stock de matériaux" />
             <Button layoutX="71.0" layoutY="37.0" mnemonicParsing="false" onAction="#gotoMaterialStocks" text="Liste des stocks de matériaux" />
             <Button layoutX="28.0" layoutY="117.0" mnemonicParsing="false" onAction="#gotoMaterials" text="Gestion des matériaux" />
             <Line endX="100.0" startX="-100.0" />
             <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" onAction="#gotoProductDepartures" text="Sorties de stock de produits finis" />
-            <Button layoutX="27.0" layoutY="117.0" mnemonicParsing="false" onAction="#gotoProductArrivals" text="Entrées de stock de produits finis" />
+            <Button defaultButton="true" layoutX="27.0" layoutY="117.0" mnemonicParsing="false" text="Entrées de stock de produits finis" />
             <Button layoutX="28.0" layoutY="82.0" mnemonicParsing="false" onAction="#gotoProductStocks" text="Liste des stocks de produits finis" />
             <Button layoutX="19.0" layoutY="268.0" mnemonicParsing="false" onAction="#gotoProducts" text="Gestions des produits finis" />
             <Line endX="100.0" startX="-100.0" />
@@ -69,16 +69,16 @@
          </VBox>
       </AnchorPane>
       <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="570.0" prefWidth="443.0">
-         <TableView fx:id="materialArrivalsTable" prefHeight="569.0" prefWidth="501.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <TableView fx:id="productArrivalsTable" prefHeight="569.0" prefWidth="501.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columns>
                <TableColumn prefWidth="57.0" sortType="DESCENDING" text="ID">
                   <cellValueFactory>
                      <PropertyValueFactory property="dbId" />
                   </cellValueFactory>
                </TableColumn>
-               <TableColumn prefWidth="133.0" text="Matériau">
+               <TableColumn prefWidth="133.0" text="Produit">
                   <cellValueFactory>
-                     <PropertyValueFactory property="material" />
+                     <PropertyValueFactory property="product" />
                   </cellValueFactory>
                </TableColumn>
                <TableColumn text="Nombre">
@@ -89,11 +89,6 @@
                <TableColumn prefWidth="120.0" text="Site">
                   <cellValueFactory>
                      <PropertyValueFactory property="site" />
-                  </cellValueFactory>
-               </TableColumn>
-               <TableColumn prefWidth="110.0" text="Destination">
-                  <cellValueFactory>
-                     <PropertyValueFactory property="destination" />
                   </cellValueFactory>
                </TableColumn>
             </columns>
@@ -112,12 +107,12 @@
                <VBox alignment="TOP_CENTER" prefHeight="256.0" prefWidth="219.0">
                   <VBox prefHeight="221.0" prefWidth="219.0">
                      <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Matériau">
+                        <Label prefHeight="27.0" prefWidth="78.0" text="Produit">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ChoiceBox fx:id="materialDetail" disable="true" prefWidth="150.0" />
+                        <ChoiceBox fx:id="productDetail" disable="true" prefWidth="150.0" />
                      </HBox>
                      <HBox layoutX="10.0" layoutY="89.0">
                         <Label prefHeight="27.0" prefWidth="78.0" text="Nombre">
@@ -134,14 +129,6 @@
                            </HBox.margin>
                         </Label>
                         <ChoiceBox fx:id="siteDetail" disable="true" prefWidth="150.0" />
-                     </HBox>
-                     <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Destination">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="destinationDetail" disable="true" />
                      </HBox>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="34.0" prefWidth="219.0" spacing="5.0">
@@ -168,7 +155,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ChoiceBox fx:id="materialFilter" prefWidth="150.0" />
+                        <ChoiceBox fx:id="productFilter" prefWidth="150.0" />
                      </HBox>
                      <HBox>
                         <Label prefHeight="27.0" prefWidth="78.0" text="Site">
@@ -177,14 +164,6 @@
                            </HBox.margin>
                         </Label>
                         <ChoiceBox fx:id="siteFilter" prefWidth="150.0" />
-                     </HBox>
-                     <HBox>
-                        <Label prefHeight="27.0" prefWidth="78.0" text="Destination">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="destinationFilter" promptText="Rechercher ici..." />
                      </HBox>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="47.0" prefWidth="219.0">

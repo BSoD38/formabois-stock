@@ -2,19 +2,18 @@ package formabois.stock.controllers;
 
 import formabois.stock.Application;
 import formabois.stock.DatabaseSession;
-import formabois.stock.entities.Material;
-import formabois.stock.entities.MaterialStock;
-import formabois.stock.entities.Site;
+import formabois.stock.entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableView;
 
-public class MaterialStockController {
+public class ProductStockController {
     @FXML
-    TableView<MaterialStock> materialArrivalsTable;
+    TableView<ProductStock> productStocksTable;
     @FXML
-    ChoiceBox<Material> materialFilter;
+    ChoiceBox<Product> productFilter;
     @FXML
     ChoiceBox<Site> siteFilter;
 
@@ -24,7 +23,7 @@ public class MaterialStockController {
      */
     @FXML
     protected void initialize() {
-        materialFilter.setItems(FXCollections.observableArrayList(DatabaseSession.materials));
+        productFilter.setItems(FXCollections.observableArrayList(DatabaseSession.products));
         siteFilter.setItems(FXCollections.observableArrayList(DatabaseSession.sites));
         updateTable();
     }
@@ -34,10 +33,10 @@ public class MaterialStockController {
      */
     @FXML
     void updateTable() {
-        final ObservableList<MaterialStock> list = FXCollections.observableArrayList(
-                MaterialStock.getMaterialStocks(materialFilter.getValue(), siteFilter.getValue())
+        final ObservableList<ProductStock> list = FXCollections.observableArrayList(
+                ProductStock.getProductStocks(productFilter.getValue(), siteFilter.getValue())
         );
-        materialArrivalsTable.setItems(list);
+        productStocksTable.setItems(list);
     }
 
     /**
@@ -70,21 +69,12 @@ public class MaterialStockController {
         Application.loadPage("arrivals_products.fxml");
     }
 
-
     /**
      * Permet de se rendre à la page des départs de produits
      */
     @FXML
     void gotoProductDepartures() {
         Application.loadPage("departures_products.fxml");
-    }
-
-    /**
-     * Permet de se rendre à la page des stocks de produits
-     */
-    @FXML
-    void gotoProductStocks() {
-        Application.loadPage("stock_products.fxml");
     }
 
     /**

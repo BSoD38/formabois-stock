@@ -60,10 +60,10 @@
             <Button defaultButton="true" layoutX="71.0" layoutY="37.0" mnemonicParsing="false" text="Liste des stocks de matériaux" />
             <Button layoutX="28.0" layoutY="117.0" mnemonicParsing="false" onAction="#gotoMaterials" text="Gestion des matériaux" />
             <Line endX="100.0" startX="-100.0" />
-            <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" text="Sorties de stock de produits finis" />
-            <Button layoutX="27.0" layoutY="117.0" mnemonicParsing="false" text="Entrées de stock de produits finis" />
-            <Button layoutX="28.0" layoutY="82.0" mnemonicParsing="false" text="Liste des stocks de produits finis" />
-            <Button layoutX="19.0" layoutY="268.0" mnemonicParsing="false" text="Gestions des produits finis" />
+            <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" onAction="#gotoProductDepartures" text="Sorties de stock de produits finis" />
+            <Button layoutX="27.0" layoutY="117.0" mnemonicParsing="false" onAction="#gotoProductArrivals" text="Entrées de stock de produits finis" />
+            <Button layoutX="28.0" layoutY="82.0" mnemonicParsing="false" onAction="#gotoProductStocks" text="Liste des stocks de produits finis" />
+            <Button layoutX="19.0" layoutY="268.0" mnemonicParsing="false" onAction="#gotoProducts" text="Gestions des produits finis" />
             <Line endX="100.0" startX="-100.0" />
             <Button layoutX="64.0" layoutY="82.0" mnemonicParsing="false" text="Statistiques" />
          </VBox>

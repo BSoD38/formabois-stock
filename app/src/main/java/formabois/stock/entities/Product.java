@@ -7,12 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Material {
+public class Product {
     private int id;
     private String name;
     private int threshold;
 
-    public Material(int id, String name, int threshold) {
+    public Product(int id, String name, int threshold) {
         this.id = id;
         this.name = name;
         this.threshold = threshold;
@@ -52,13 +52,13 @@ public class Material {
      *
      * @return liste des matériaux
      */
-    public static ArrayList<Material> getMaterials() {
-        final ArrayList<Material> array = new ArrayList<>();
+    public static ArrayList<Product> getProducts() {
+        final ArrayList<Product> array = new ArrayList<>();
         try {
-            final PreparedStatement ps = DatabaseSession.connection.prepareStatement("SELECT * FROM materials");
+            final PreparedStatement ps = DatabaseSession.connection.prepareStatement("SELECT * FROM products");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                array.add(new Material(rs.getInt("id"), rs.getString("name"), rs.getInt("stock_threshold")));
+                array.add(new Product(rs.getInt("id"), rs.getString("name"), rs.getInt("stock_threshold")));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -72,13 +72,13 @@ public class Material {
      * @param name nom ou partie du nom du matériau
      * @return liste des matériaux contenant le terme de recherche
      */
-    public static ArrayList<Material> getMaterials(String name) {
-        final ArrayList<Material> array = new ArrayList<>();
+    public static ArrayList<Product> getProducts(String name) {
+        final ArrayList<Product> array = new ArrayList<>();
         try {
-            final PreparedStatement ps = DatabaseSession.connection.prepareStatement("SELECT * FROM materials WHERE name LIKE '%" + name + "%'");
+            final PreparedStatement ps = DatabaseSession.connection.prepareStatement("SELECT * FROM products WHERE name LIKE '%" + name + "%'");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                array.add(new Material(rs.getInt("id"), rs.getString("name"), rs.getInt("stock_threshold")));
+                array.add(new Product(rs.getInt("id"), rs.getString("name"), rs.getInt("stock_threshold")));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -92,10 +92,10 @@ public class Material {
      * @param name           nom du matériau
      * @param stockThreshold limite d'alerte de stock du matériau
      */
-    public static void insertMaterial(String name, String stockThreshold) {
+    public static void insertProducts(String name, String stockThreshold) {
         try {
             final PreparedStatement ps = DatabaseSession.connection.prepareStatement(
-                    String.format("INSERT INTO materials (name, stock_threshold) VALUES ('%s', %s)", name, stockThreshold)
+                    String.format("INSERT INTO products (name, stock_threshold) VALUES ('%s', %s)", name, stockThreshold)
             );
             ps.executeQuery();
             DatabaseSession.refreshMaterials();
@@ -111,10 +111,10 @@ public class Material {
      * @param name            nom du matériau
      * @param stockThreshold  limite d'alerte de stock du matériau
      */
-    public static void updateMaterial(Material currentMaterial, String name, String stockThreshold) {
+    public static void updateProducts(Product currentMaterial, String name, String stockThreshold) {
         try {
             final PreparedStatement ps = DatabaseSession.connection.prepareStatement(
-                    String.format("UPDATE materials SET name = '%s', stock_threshold = %s WHERE id = %s", name, stockThreshold, currentMaterial.getId())
+                    String.format("UPDATE products SET name = '%s', stock_threshold = %s WHERE id = %s", name, stockThreshold, currentMaterial.getId())
             );
             ps.executeQuery();
             DatabaseSession.refreshMaterials();
