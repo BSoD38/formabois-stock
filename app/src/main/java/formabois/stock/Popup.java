@@ -33,7 +33,7 @@ public class Popup {
         VBox layout = new VBox(15);
         layout.getChildren().addAll(label, button);
         layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout, 300, 70);
+        Scene scene = new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
     }

@@ -106,4 +106,28 @@ public class ProductStock {
         }
         return array;
     }
+
+    public static ArrayList<ProductStock> getLowStock() {
+        final ArrayList<ProductStock> array = new ArrayList<>();
+        try {
+            String query = "SELECT p.name AS product_name, s.name AS site_name, count, product_id, site_id, p.stock_threshold FROM product_site_stock " +
+                    "INNER JOIN products p on product_site_stock.product_id = p.id " +
+                    "INNER JOIN sites s on product_site_stock.site_id = s.id";
+            query = DatabaseSession.addCondition(query, "count < stock_threshold");
+            final PreparedStatement ps = DatabaseSession.connection.prepareStatement(query);
+            final ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                array.add(new ProductStock(
+                        rs.getString("product_name"),
+                        rs.getString("site_name"),
+                        rs.getString("count"),
+                        rs.getString("product_id"),
+                        rs.getString("site_id")
+                ));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return array;
+    }
 }

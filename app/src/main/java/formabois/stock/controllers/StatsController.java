@@ -37,7 +37,7 @@ public class StatsController {
             ResultSet rsMostSoldProduct = psMostSoldProduct.executeQuery();
             while (rsMostSoldProduct.next()) {
                 mostSoldProduct.setText(
-                        String.format("%s - %s - %s", rsMostSoldProduct.getString("total_max"), rsMostSoldProduct.getString("product_name"), rsMostSoldProduct.getString("site_name"))
+                        String.format("%s - %s - %s ventes", rsMostSoldProduct.getString("product_name"), rsMostSoldProduct.getString("site_name"), rsMostSoldProduct.getString("total_max"))
                 );
             }
         } catch (SQLException throwables) {
